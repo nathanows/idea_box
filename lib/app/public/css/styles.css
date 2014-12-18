@@ -1,0 +1,74 @@
+#sort-list li {
+  display: inline;
+}
+
+#sort-list li:not(:last-child):after {
+  content: " |";
+}
+
+#filter-list li {
+  display: inline;
+}
+
+#filter-list li:not(:last-child):after {
+  content: " |";
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.jumbotron {
+  background: #eee;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  margin-top: 70px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+.jumbotron h1 {
+  font-size: 63px;
+  font-weight: 500;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.nav_search {
+  margin-top: 10px;
+}
+
+.idea-title {
+  float: left;
+  margin-top: 55px;
+  font-weight: 500;
+  color: gray;
+  font-size: 35px;
+  margin-right: -40px;
+}
+
+.idea-input {
+  float: left;
+}
+
+.rotate {
+  /* Safari */
+  -webkit-transform: rotate(-90deg);
+
+  /* Firefox */
+  -moz-transform: rotate(-90deg);
+
+  /* IE */
+  -ms-transform: rotate(-90deg);
+
+  /* Opera */
+  -o-transform: rotate(-90deg);
+
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+#edit-header {
+  margin-top: 55px;
+}

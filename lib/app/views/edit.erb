@@ -1,18 +1,22 @@
-<h1>IdeaBox</h1>
+<div class="container">
+  <div class="span3 col-centered">
+    <h1 id="edit-header">Edit Your Idea</h1>
 
-<form action="/<%= idea.id %>" method="POST">
-  <p>
-  Edit your Idea:
-  </p>
-  <input type="hidden" name="_method" value="PUT" />
-  <label>Title:
-    <input type='text' name='idea[title]' value="<%= idea.title %>"/><br/>
-  </label>
-  <label>Description:
-    <textarea name='idea[description]'><%= idea.description %></textarea><br/>
-  </label>
-  <label>Tags:
-    <textarea name='idea[tags]'><%= idea.tags.join(", ") %></textarea><br/>
-  </label>
-  <input type='submit'/>
-</form>
+    <form action="/<%= idea.id %>" method="POST" role="form">
+      <input type="hidden" name="_method" value="PUT" />
+      <div class="form-group">
+        <label for="edit-title">Title:</label>
+        <input id="edit-title" type='text' name='idea[title]' value="<%= idea.title %>"/><br/>
+      </div>
+      <div class="form-group">
+        <label for="edit-desc">Description:</label>
+        <textarea name='idea[description]'><%= idea.description %></textarea><br/>
+      </div>
+      <div class="form-group">
+        <label for="edit-tags">Tags:</label>
+        <textarea name='idea[tags]'><%= idea.tags.join(", ") %></textarea><br/>
+      </div>
+      <input type='submit' class='btn btn-default'/>
+    </form>
+  </div>
+</div>

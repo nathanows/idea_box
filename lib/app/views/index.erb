@@ -1,70 +1,96 @@
-<h1>IdeaBox</h1>
-<form action="/" method="POST">
-  <p>Your Idea:</p>
-  <label>Title:
-    <input type="text" name="idea[title]"/><br/>
-  </label>
-  <label>Description:
-    <textarea name="idea[description]"></textarea><br/>
-  </label>
-  <label>Tags:
-    <input type="text" name="idea[tags]"/><br/>
-  </label>
-  <input type="submit"/>
-</form>
 
-<h2>Filter/Sort</h2>
-<h3>Sort</h3>
-<ul>
-  <li><a href="/sort/title">By Title</a></li>
-  <li><a href="/sort/rank">By Likes</a></li>
-  <li><a href="/sort/tags">By First Tag Name</a></li>
-</ul>
-<h3>Filter</h3>
-<ul>
-  <li style="display: inline"><a href="/">all</a></li>
-  <% tags.sort.each do |tag| %>
-    <li style="display: inline"><a href="/filter/<%= tag %>"><%= tag %></a></li>
+<div class="container">
+  <div class="jumbotron clearfix">
+    <h1>Idea Box</h1>
+    <div class="span4 col-centered">
+      <h3 class="rotate idea-title">your idea</h3>
+      <div class="idea-input">
+        <form role="form" action="/" method="post">
+          <div class="form-group">
+            <input type="text" name="idea[title]" id="new-title" placeholder="title"/>
+          </div>
+          <div class="form-group">
+            <textarea name="idea[description]" id="new-title" placeholder="description"></textarea><br/>
+          </div>
+          <div class="form-group">
+            <input type="text" name="idea[tags]" id="new-tags" placeholder="tags(comma separated)"/><br/>
+          </div>
+          <input type="submit" class="btn btn-default"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="span4">
+      <h4>Sort</h4>
+      <div id="sort-list">
+        <ul>
+          <li><a href="/sort/title">By Title</a></li>
+          <li><a href="/sort/rank">By Likes</a></li>
+          <li><a href="/sort/tags">By First Tag Name</a></li>
+          <li><a href="/sort/created_at">By Created At</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="span8">
+      <h4>Filter</h4>
+      <div id="filter-list">
+        <ul>
+          <li style="display: inline"><a href="/">all</a></li>
+          <% tags.sort.each do |tag| %>
+            <li style="display: inline"><a href="/filter/<%= tag %>"><%= tag %></a></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2>Existing Ideas</h2>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Likes</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Tags</th>
+        <th>Created At</th>
+        <th>Edit</th>
+        <th>Add Tag</th>
+        <th>Like</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+  <% ideas.each_with_index do |idea, id| %>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-success"><%= idea.rank %></span></td>
+        <td><%= idea.title %></td>
+        <td><%= idea.description %></td>
+        <td><%= idea.tags.join(", ") %></td>
+        <td><%= idea.created_at %></td>
+        <td><a href="/<%= idea.id %>/edit">Edit</a></td>
+        <td>
+          <form action="/<%= idea.id %>/add_tag" method="POST" style="display: inline-block">
+            <input type="text" name="idea[tag]" placeholder="Add tags" style="width: 100px"/>
+            <input type="submit" value="+" class="btn btn-default btn-sm"/>
+          </form>
+        </td>
+        <td>
+          <form action='/<%= idea.id %>/like' method='POST' style="display: inline">
+            <input type='submit' value="Like" class="btn btn-default btn-sm"/>
+          </form>
+        </td>
+        <td>
+          <form action="/<%= idea.id %>" method="POST">
+            <input type="hidden" name="_method" value="DELETE" />
+            <input type="submit" value="delete" class="btn btn-danger btn-sm"/>
+          </form>
+        </td>
+      </tr>
+    </tbody>
   <% end %>
-</ul>
-
-<h2>Existing Ideas</h2>
-
-<table>
-  <tr>
-    <th style="width:5%">Likes</th>
-    <th style="width:10%">Title</th>
-    <th style="width:30%">Description</th>
-    <th style="width:15%">Tags</th>
-    <th style="width:5%">Edit</th>
-    <th style="width:15%">Add Tag</th>
-    <th style="width:5%">Like</th>
-    <th style="width:5%">Delete</th>
-  </tr>
-<% ideas.each_with_index do |idea, id| %>
-  <tr>
-    <td><%= idea.rank %></td>
-    <td><%= idea.title %></td>
-    <td><%= idea.description %></td>
-    <td><%= idea.tags.join(", ") %></td>
-    <td><a href="/<%= idea.id %>/edit">Edit</a></td>
-    <td>
-      <form action="/<%= idea.id %>/add_tag" method="POST">
-        <input type="text" name="idea[tag]" placeholder="Add tags"/>
-        <input type="submit" value="+" />
-      </form>
-    </td>
-    <td>
-      <form action='/<%= idea.id %>/like' method='POST' style="display: inline">
-        <input type='submit' value="Like"/>
-      </form>
-    </td>
-    <td>
-      <form action="/<%= idea.id %>" method="POST">
-        <input type="hidden" name="_method" value="DELETE" />
-        <input type="submit" value="delete" />
-      </form>
-    </td>
-  </tr>
-<% end %>
-</table>
+  </table>
+</div>

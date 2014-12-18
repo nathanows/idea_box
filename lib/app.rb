@@ -22,9 +22,13 @@ class IdeaBoxApp < Sinatra::Base
                           tags: IdeaStore.tags }
   end
 
+  get '/stats' do
+    erb :stats, locals: { ideas: IdeaStore.all }
+  end
 
   post '/' do
-    IdeaStore.create(params[:idea])
+    idea = Idea.new(params[:idea])
+    IdeaStore.create(idea.to_h)
     redirect '/'
   end
 
@@ -35,7 +39,8 @@ class IdeaBoxApp < Sinatra::Base
 
   get '/:id/edit' do |id|
     idea = IdeaStore.find(id.to_i)
-    erb :edit, locals: { idea: idea }
+    erb :edit, locals: { idea: idea,
+                         tags: IdeaStore.tags }
   end
 
   put '/:id' do |id|

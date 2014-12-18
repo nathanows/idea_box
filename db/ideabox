@@ -1,49 +1,30 @@
 ---
 ideas:
-- title: Test Idea
-  description: wild card bitches
-  rank: 1
-  tags:
-  - boring
-  - test
-  - test
-  - not_boring
-- title: gggg
-  description: gggggggggh
-  rank: 8
-  tags:
-  - grown
-- title: noodles
-  description: and company
-  rank: 1
-  tags: []
-- title: internet
-  description: how work?
-  rank: 1
-  tags: []
-- title: your
-  description: "world kitchen\r\n"
-  tags:
-  - test
-  - test
-  - testeroo
 - title: test
-  description: testeroo
+  description: test
   rank: 0
   tags:
-  - wow
-- title: kkkrrrr
-  description: kkkkkkkk
-- title: new
-  description: new ones
+  - test test test
+  - two
+  - jsjsjsjsj
+  created_at: 2014-12-18 11:22:26.839548000 -07:00
+- title: coffee
+  description: from 7-11
   rank: 1
-- title: test with long description
-  description: Bacon ipsum dolor amet pork belly fatback tongue filet mignon doner
-    sirloin. Corned beef landjaeger short ribs pig bacon swine pork chop. Spare ribs
-    short loin kevin strip steak, picanha pork flank cow ground round meatloaf ham.
-    Swine turkey ham kevin, shoulder jowl chicken. Meatball cow hamburger bacon drumstick
-    pastrami alcatra beef pig swine brisket leberkas frankfurter pork chop.
-  rank: 5
   tags:
-  - test
-  - okeee
+  - coffee
+  - money
+  created_at: 2014-12-18 11:25:07.856070000 -07:00
+- title: plunger
+  description: in the pink circle
+  rank: 2
+  tags:
+  - bad_idea
+  - bathroom
+  created_at: 2014-12-18 11:26:38.491438000 -07:00
+- title: wild card
+  description: become one
+  rank: 6
+  tags:
+  - always_sunny
+  created_at: 2014-12-18 11:56:41.753874000 -07:00

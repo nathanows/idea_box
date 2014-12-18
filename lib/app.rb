@@ -5,8 +5,23 @@ class IdeaBoxApp < Sinatra::Base
   set :root, 'lib/app'
 
   get '/' do
-    erb :index, locals: { ideas: IdeaStore.all.sort, idea: Idea.new(params) }
+    erb :index, locals: { ideas: IdeaStore.all.sort,
+                          idea: Idea.new(params),
+                          tags: IdeaStore.tags }
   end
+
+  get '/sort/:param' do |param|
+    erb :index, locals: { ideas: IdeaStore.cust_sort(param),
+                          idea: Idea.new(params),
+                          tags: IdeaStore.tags }
+  end
+
+  get '/filter/:tag' do |tag|
+    erb :index, locals: { ideas: IdeaStore.filter(tag),
+                          idea: Idea.new(params),
+                          tags: IdeaStore.tags }
+  end
+
 
   post '/' do
     IdeaStore.create(params[:idea])
@@ -24,13 +39,22 @@ class IdeaBoxApp < Sinatra::Base
   end
 
   put '/:id' do |id|
-    IdeaStore.update(id.to_i, params[:idea])
+    idea = IdeaStore.find(id.to_i)
+    idea.edit(params[:idea])
+    IdeaStore.update(id.to_i, idea.to_h)
     redirect '/'
   end
 
   post '/:id/like' do |id|
     idea = IdeaStore.find(id.to_i)
     idea.like!
+    IdeaStore.update(id.to_i, idea.to_h)
+    redirect '/'
+  end
+
+  post '/:id/add_tag' do |id|
+    idea = IdeaStore.find(id.to_i)
+    idea.add_tag(params[:idea]["tag"])
     IdeaStore.update(id.to_i, idea.to_h)
     redirect '/'
   end
